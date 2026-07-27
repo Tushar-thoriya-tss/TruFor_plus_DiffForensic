@@ -1,0 +1,365 @@
+2026-02-20 14:51:27,263 CUDNN:
+  BENCHMARK: False
+  DETERMINISTIC: False
+  ENABLED: False
+DATASET:
+  CLASS_WEIGHTS: [0.1, 1.9]
+  NUM_CLASSES: 2
+  ROOT: 
+  TRAIN: ['MyData']
+  VALID: ['MyData']
+GPUS: (0,)
+LOG_DIR: log
+LOSS:
+  LOSSES: [['LOC', 1.0, 'dice_entropy']]
+  SMOOTH: 0
+  USE_OHEM: False
+MODEL:
+  EXTRA:
+    BACKBONE: mit_b2
+    BN_EPS: 0.001
+    BN_MOMENTUM: 0.1
+    DECODER: MLPDecoder
+    DECODER_EMBED_DIM: 512
+    DETECTION: None
+    FIX_MODULES: ['NP++']
+    MODULES: ['NP++', 'backbone', 'loc_head']
+    NP_WEIGHTS: pretrained_models/noiseprint++/noiseprint++.th
+    PREPRC: imagenet
+  MODS: ('RGB', 'NP++')
+  NAME: detconfcmx
+  PRETRAINED: pretrained_models/segformers/mit_b2.pth
+OUTPUT_DIR: weights
+TEST:
+  MODEL_FILE: weights/trufor.pth.tar
+TRAIN:
+  AUG: lib/config/aug_res_comp.yaml
+  BATCH_SIZE_PER_GPU: 4
+  BEGIN_EPOCH: 0
+  END_EPOCH: 100
+  EXTRA_EPOCH: 0
+  IGNORE_LABEL: -1
+  IMAGE_SIZE: [512, 512]
+  LR: 0.005
+  MOMENTUM: 0.9
+  NESTEROV: False
+  NUM_SAMPLES: -1
+  OPTIMIZER: sgd
+  PRETRAINING: None
+  RESUME: True
+  SHUFFLE: True
+  STOP_EPOCH: -1
+  WD: 0.0005
+VALID:
+  AUG: lib/config/aug_res_comp.yaml
+  BEST_KEY: avg_p-F1_smooth
+  FIRST_VALID: False
+  IMAGE_SIZE: None
+  MAX_SIZE: 512
+WORKERS: 24
+2026-02-20 14:51:27,264 
+
+2026-02-20 14:51:27,276 Train augmentation: lib/config/aug_res_comp.yaml Compose([
+  RandomScale(p=0.5, area_for_downscale=None, interpolation=1, mask_interpolation=0, scale_limit=(-0.5, 0.5)),
+  ImageCompression(p=0.5, compression_type='jpeg', quality_range=(99, 100)),
+], p=1.0, bbox_params=None, keypoint_params=None, additional_targets={}, is_check_shapes=True)
+2026-02-20 14:51:27,276 Validation augmentation: lib/config/aug_res_comp.yaml Compose([
+  RandomScale(p=0.5, area_for_downscale=None, interpolation=1, mask_interpolation=0, scale_limit=(-0.5, 0.5)),
+  ImageCompression(p=0.5, compression_type='jpeg', quality_range=(99, 100)),
+], p=1.0, bbox_params=None, keypoint_params=None, additional_targets={}, is_check_shapes=True)
+2026-02-20 14:51:27,286 Using backbone: Segformer-B2
+2026-02-20 14:51:30,791 Using MLP Decoder
+2026-02-20 14:51:30,839 Noiseprint++ weights: pretrained_models/noiseprint++/noiseprint++.th
+2026-02-20 14:51:30,842 Loading backbone model: pretrained_models/segformers/mit_b2.pth
+2026-02-20 14:51:30,963 Load model, Time usage:
+	IO: 0.0984489917755127, initialize parameters: 0.02237081527709961
+2026-02-20 14:51:30,965 Initing heads weights ...
+2026-02-20 14:51:31,295 best valid key: avg_p-F1_smooth
+2026-02-20 14:51:33,243 => loaded checkpoint (epoch 44)
+2026-02-20 15:23:01,947 Epoch: [44/100], Time: 1.88, lr: 0.002919, Loss: 0.505951
+2026-02-20 15:23:03,203 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 15:26:50,188 (Valid) Loss: 0.514, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 15:26:50,188 [0.98501169 0.41219689]
+2026-02-20 15:26:50,191 confusion_matrix:
+2026-02-20 15:26:50,191 [[2.25164318e+08 3.30783800e+06]
+ [1.18347000e+05 2.40261200e+06]]
+2026-02-20 15:58:18,942 Epoch: [45/100], Time: 1.88, lr: 0.002872, Loss: 0.498559
+2026-02-20 15:58:20,208 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 16:02:09,783 (Valid) Loss: 0.505, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 16:02:09,784 [0.98577248 0.42382069]
+2026-02-20 16:02:09,785 confusion_matrix:
+2026-02-20 16:02:09,785 [[2.25348308e+08 3.12384800e+06]
+ [1.28573000e+05 2.39238600e+06]]
+2026-02-20 16:33:39,668 Epoch: [46/100], Time: 1.88, lr: 0.002824, Loss: 0.501224
+2026-02-20 16:33:40,940 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 16:37:30,559 (Valid) Loss: 0.569, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 16:37:30,559 [0.93176181 0.1300878 ]
+2026-02-20 16:37:30,561 confusion_matrix:
+2026-02-20 16:37:30,561 [[2.13056444e+08 1.54157120e+07]
+ [1.87617000e+05 2.33334200e+06]]
+2026-02-20 17:09:00,299 Epoch: [47/100], Time: 1.88, lr: 0.002776, Loss: 0.505040
+2026-02-20 17:09:01,560 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 17:12:48,155 (Valid) Loss: 0.510, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 17:12:48,155 [0.99385354 0.6183146 ]
+2026-02-20 17:12:48,157 confusion_matrix:
+2026-02-20 17:12:48,157 [[2.27309998e+08 1.16215800e+06]
+ [2.43634000e+05 2.27732500e+06]]
+2026-02-20 17:44:16,848 Epoch: [48/100], Time: 1.88, lr: 0.002728, Loss: 0.502770
+2026-02-20 17:44:18,097 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 17:48:01,118 (Valid) Loss: 0.506, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 17:48:01,119 [0.99292766 0.58623239]
+2026-02-20 17:48:01,121 confusion_matrix:
+2026-02-20 17:48:01,121 [[2.27084027e+08 1.38812900e+06]
+ [2.29325000e+05 2.29163400e+06]]
+2026-02-20 18:19:30,251 Epoch: [49/100], Time: 1.88, lr: 0.002679, Loss: 0.502879
+2026-02-20 18:19:31,512 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 18:23:19,645 (Valid) Loss: 0.509, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 18:23:19,645 [0.9920854  0.56278379]
+2026-02-20 18:23:19,648 confusion_matrix:
+2026-02-20 18:23:19,648 [[2.2685379e+08 1.6183660e+06]
+ [1.9141400e+05 2.3295450e+06]]
+2026-02-20 18:54:48,837 Epoch: [50/100], Time: 1.88, lr: 0.002631, Loss: 0.496878
+2026-02-20 18:54:50,090 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 18:58:32,249 (Valid) Loss: 0.531, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 18:58:32,249 [0.98350411 0.36228751]
+2026-02-20 18:58:32,251 confusion_matrix:
+2026-02-20 18:58:32,251 [[2.25073427e+08 3.39872900e+06]
+ [3.76330000e+05 2.14462900e+06]]
+2026-02-20 19:30:02,075 Epoch: [51/100], Time: 1.88, lr: 0.002583, Loss: 0.493711
+2026-02-20 19:30:03,329 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 19:33:46,328 (Valid) Loss: 0.536, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 19:33:46,329 [0.97907133 0.3257075 ]
+2026-02-20 19:33:46,331 confusion_matrix:
+2026-02-20 19:33:46,331 [[2.23895311e+08 4.57684500e+06]
+ [2.09151000e+05 2.31180800e+06]]
+2026-02-20 20:05:15,212 Epoch: [52/100], Time: 1.88, lr: 0.002534, Loss: 0.502511
+2026-02-20 20:05:16,473 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 20:09:02,893 (Valid) Loss: 0.502, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 20:09:02,893 [0.99581447 0.70790966]
+2026-02-20 20:09:02,895 confusion_matrix:
+2026-02-20 20:09:02,895 [[2.27716324e+08 7.55832000e+05]
+ [2.01287000e+05 2.31967200e+06]]
+2026-02-20 20:40:31,942 Epoch: [53/100], Time: 1.88, lr: 0.002486, Loss: 0.503085
+2026-02-20 20:40:33,195 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 20:44:29,461 (Valid) Loss: 0.505, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 20:44:29,461 [0.99558908 0.69965186]
+2026-02-20 20:44:29,463 confusion_matrix:
+2026-02-20 20:44:29,463 [[2.27635245e+08 8.36911000e+05]
+ [1.71619000e+05 2.34934000e+06]]
+2026-02-20 21:15:58,252 Epoch: [54/100], Time: 1.88, lr: 0.002437, Loss: 0.498545
+2026-02-20 21:15:59,504 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 21:19:47,811 (Valid) Loss: 0.501, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 21:19:47,811 [0.99255644 0.58150523]
+2026-02-20 21:19:47,815 confusion_matrix:
+2026-02-20 21:19:47,816 [[2.26926615e+08 1.54554100e+06]
+ [1.56268000e+05 2.36469100e+06]]
+2026-02-20 21:51:16,961 Epoch: [55/100], Time: 1.88, lr: 0.002388, Loss: 0.503479
+2026-02-20 21:51:18,215 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 21:55:10,776 (Valid) Loss: 0.505, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 21:55:10,777 [0.99598374 0.70772971]
+2026-02-20 21:55:10,779 confusion_matrix:
+2026-02-20 21:55:10,779 [[2.27849477e+08 6.22679000e+05]
+ [2.96113000e+05 2.22484600e+06]]
+2026-02-20 22:26:39,318 Epoch: [56/100], Time: 1.88, lr: 0.002339, Loss: 0.501911
+2026-02-20 22:26:40,568 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 22:30:27,486 (Valid) Loss: 0.504, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 22:30:27,486 [0.99487707 0.6645176 ]
+2026-02-20 22:30:27,488 confusion_matrix:
+2026-02-20 22:30:27,488 [[2.27501209e+08 9.70947000e+05]
+ [2.00526000e+05 2.32043300e+06]]
+2026-02-20 23:01:56,500 Epoch: [57/100], Time: 1.88, lr: 0.002290, Loss: 0.495414
+2026-02-20 23:01:57,745 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 23:05:43,757 (Valid) Loss: 0.507, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 23:05:43,758 [0.99337256 0.59885841]
+2026-02-20 23:05:43,759 confusion_matrix:
+2026-02-20 23:05:43,759 [[2.27214165e+08 1.25799100e+06]
+ [2.57903000e+05 2.26305600e+06]]
+2026-02-20 23:37:13,267 Epoch: [58/100], Time: 1.88, lr: 0.002241, Loss: 0.493457
+2026-02-20 23:37:14,519 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 23:41:13,152 (Valid) Loss: 0.499, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 23:41:13,152 [0.99667999 0.75562169]
+2026-02-20 23:41:13,154 confusion_matrix:
+2026-02-20 23:41:13,154 [[2.27886841e+08 5.85315000e+05]
+ [1.73791000e+05 2.34716800e+06]]
+2026-02-21 00:12:41,539 Epoch: [59/100], Time: 1.88, lr: 0.002192, Loss: 0.497463
+2026-02-21 00:12:42,794 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 00:16:28,330 (Valid) Loss: 0.512, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 00:16:28,330 [0.99176863 0.5600386 ]
+2026-02-21 00:16:28,331 confusion_matrix:
+2026-02-21 00:16:28,333 [[2.26716208e+08 1.75594800e+06]
+ [1.25726000e+05 2.39523300e+06]]
+2026-02-21 00:47:58,367 Epoch: [60/100], Time: 1.88, lr: 0.002143, Loss: 0.496359
+2026-02-21 00:47:59,627 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 00:51:43,637 (Valid) Loss: 0.534, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 00:51:43,637 [0.97387219 0.29006314]
+2026-02-21 00:51:43,639 confusion_matrix:
+2026-02-21 00:51:43,640 [[2.22581667e+08 5.89048900e+06]
+ [8.11080000e+04 2.43985100e+06]]
+2026-02-21 01:23:13,211 Epoch: [61/100], Time: 1.88, lr: 0.002093, Loss: 0.505506
+2026-02-21 01:23:14,461 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 01:27:00,480 (Valid) Loss: 0.504, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 01:27:00,480 [0.99330469 0.60397828]
+2026-02-21 01:27:00,480 confusion_matrix:
+2026-02-21 01:27:00,480 [[2.27127322e+08 1.34483400e+06]
+ [1.86104000e+05 2.33485500e+06]]
+2026-02-21 01:58:30,171 Epoch: [62/100], Time: 1.88, lr: 0.002043, Loss: 0.498520
+2026-02-21 01:58:31,419 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 02:02:15,021 (Valid) Loss: 0.503, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 02:02:15,022 [0.99478185 0.6607615 ]
+2026-02-21 02:02:15,024 confusion_matrix:
+2026-02-21 02:02:15,024 [[2.27475743e+08 9.96413000e+05]
+ [1.96815000e+05 2.32414400e+06]]
+2026-02-21 02:33:40,765 Epoch: [63/100], Time: 1.87, lr: 0.001994, Loss: 0.486471
+2026-02-21 02:33:42,008 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 02:37:25,956 (Valid) Loss: 0.506, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 02:37:25,956 [0.99513263 0.67976002]
+2026-02-21 02:37:25,958 confusion_matrix:
+2026-02-21 02:37:25,958 [[2.27518121e+08 9.54035000e+05]
+ [1.58797000e+05 2.36216200e+06]]
+2026-02-21 03:08:46,369 Epoch: [64/100], Time: 1.87, lr: 0.001944, Loss: 0.486590
+2026-02-21 03:08:47,615 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 03:12:32,429 (Valid) Loss: 0.500, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 03:12:32,429 [0.9941567  0.63953912]
+2026-02-21 03:12:32,431 confusion_matrix:
+2026-02-21 03:12:32,431 [[2.27286993e+08 1.18516300e+06]
+ [1.50749000e+05 2.37021000e+06]]
+2026-02-21 03:43:58,091 Epoch: [65/100], Time: 1.87, lr: 0.001894, Loss: 0.486230
+2026-02-21 03:43:59,340 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 03:47:45,747 (Valid) Loss: 0.499, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 03:47:45,747 [0.99527949 0.68510111]
+2026-02-21 03:47:45,749 confusion_matrix:
+2026-02-21 03:47:45,750 [[2.27565599e+08 9.06557000e+05]
+ [1.72764000e+05 2.34819500e+06]]
+2026-02-21 04:19:05,529 Epoch: [66/100], Time: 1.87, lr: 0.001843, Loss: 0.492875
+2026-02-21 04:19:06,773 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 04:23:00,913 (Valid) Loss: 0.499, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 04:23:00,914 [0.99347669 0.61190534]
+2026-02-21 04:23:00,916 confusion_matrix:
+2026-02-21 04:23:00,916 [[2.27149983e+08 1.32217300e+06]
+ [1.69326000e+05 2.35163300e+06]]
+2026-02-21 04:54:20,274 Epoch: [67/100], Time: 1.87, lr: 0.001793, Loss: 0.488740
+2026-02-21 04:54:21,517 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 04:58:06,469 (Valid) Loss: 0.501, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 04:58:06,469 [0.99486309 0.6693858 ]
+2026-02-21 04:58:06,471 confusion_matrix:
+2026-02-21 04:58:06,471 [[2.27441008e+08 1.03114800e+06]
+ [1.43229000e+05 2.37773000e+06]]
+2026-02-21 05:29:28,014 Epoch: [68/100], Time: 1.87, lr: 0.001743, Loss: 0.497153
+2026-02-21 05:29:29,258 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 05:33:14,614 (Valid) Loss: 0.499, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 05:33:14,615 [0.99578328 0.71175442]
+2026-02-21 05:33:14,617 confusion_matrix:
+2026-02-21 05:33:14,617 [[2.27648755e+08 8.23401000e+05]
+ [1.40596000e+05 2.38036300e+06]]
+2026-02-21 06:04:39,013 Epoch: [69/100], Time: 1.87, lr: 0.001692, Loss: 0.493761
+2026-02-21 06:04:40,255 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 06:08:21,685 (Valid) Loss: 0.500, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 06:08:21,686 [0.99450548 0.65305028]
+2026-02-21 06:08:21,687 confusion_matrix:
+2026-02-21 06:08:21,687 [[2.27372403e+08 1.09975300e+06]
+ [1.56452000e+05 2.36450700e+06]]
+2026-02-21 06:39:44,899 Epoch: [70/100], Time: 1.87, lr: 0.001641, Loss: 0.488369
+2026-02-21 06:39:46,136 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 06:43:27,958 (Valid) Loss: 0.496, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 06:43:27,958 [0.99624479 0.7309419 ]
+2026-02-21 06:43:27,960 confusion_matrix:
+2026-02-21 06:43:27,961 [[2.2780173e+08 6.7042600e+05]
+ [1.8824200e+05 2.3327170e+06]]
+2026-02-21 07:14:50,513 Epoch: [71/100], Time: 1.87, lr: 0.001590, Loss: 0.484331
+2026-02-21 07:14:51,759 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 07:18:35,707 (Valid) Loss: 0.494, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 07:18:35,707 [0.99645534 0.74401731]
+2026-02-21 07:18:35,709 confusion_matrix:
+2026-02-21 07:18:35,709 [[2.27827108e+08 6.45048000e+05]
+ [1.65395000e+05 2.35556400e+06]]
+2026-02-21 07:50:03,379 Epoch: [72/100], Time: 1.87, lr: 0.001539, Loss: 0.493820
+2026-02-21 07:50:04,633 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 07:53:47,632 (Valid) Loss: 0.496, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 07:53:47,633 [0.9954642  0.69571637]
+2026-02-21 07:53:47,634 confusion_matrix:
+2026-02-21 07:53:47,634 [[2.27585163e+08 8.86993000e+05]
+ [1.49991000e+05 2.37096800e+06]]
+2026-02-21 08:25:14,511 Epoch: [73/100], Time: 1.87, lr: 0.001487, Loss: 0.490139
+2026-02-21 08:25:15,756 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 08:29:09,340 (Valid) Loss: 0.493, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 08:29:09,340 [0.99549931 0.70056598]
+2026-02-21 08:29:09,341 confusion_matrix:
+2026-02-21 08:29:09,341 [[2.27557313e+08 9.14843000e+05]
+ [1.13953000e+05 2.40700600e+06]]
+2026-02-21 09:00:31,801 Epoch: [74/100], Time: 1.87, lr: 0.001436, Loss: 0.488237
+2026-02-21 09:00:33,051 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 09:04:17,538 (Valid) Loss: 0.498, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 09:04:17,538 [0.99433109 0.64875814]
+2026-02-21 09:04:17,540 confusion_matrix:
+2026-02-21 09:04:17,540 [[2.27303606e+08 1.16855000e+06]
+ [1.27360000e+05 2.39359900e+06]]
+2026-02-21 09:35:46,884 Epoch: [75/100], Time: 1.88, lr: 0.001384, Loss: 0.493089
+2026-02-21 09:35:48,132 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 09:39:39,873 (Valid) Loss: 0.497, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 09:39:39,873 [0.99522968 0.68410597]
+2026-02-21 09:39:39,876 confusion_matrix:
+2026-02-21 09:39:39,876 [[2.27540549e+08 9.31607000e+05]
+ [1.59038000e+05 2.36192100e+06]]
+2026-02-21 10:11:09,519 Epoch: [76/100], Time: 1.88, lr: 0.001332, Loss: 0.484799
+2026-02-21 10:11:10,771 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 10:14:54,343 (Valid) Loss: 0.493, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 10:14:54,343 [0.99678322 0.76448909]
+2026-02-21 10:14:54,345 confusion_matrix:
+2026-02-21 10:14:54,345 [[2.27870644e+08 6.01512000e+05]
+ [1.33864000e+05 2.38709500e+06]]
+2026-02-21 10:46:22,676 Epoch: [77/100], Time: 1.88, lr: 0.001280, Loss: 0.487758
+2026-02-21 10:46:23,922 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 10:50:03,885 (Valid) Loss: 0.495, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 10:50:03,885 [0.99558091 0.70304675]
+2026-02-21 10:50:03,885 confusion_matrix:
+2026-02-21 10:50:03,886 [[2.27591199e+08 8.80957000e+05]
+ [1.29253000e+05 2.39170600e+06]]
+2026-02-21 11:21:33,952 Epoch: [78/100], Time: 1.88, lr: 0.001227, Loss: 0.492209
+2026-02-21 11:21:35,198 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 11:25:21,843 (Valid) Loss: 0.498, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 11:25:21,844 [0.99550218 0.6957255 ]
+2026-02-21 11:25:21,846 confusion_matrix:
+2026-02-21 11:25:21,847 [[2.27613305e+08 8.58851000e+05]
+ [1.69539000e+05 2.35142000e+06]]
+2026-02-21 11:56:50,739 Epoch: [79/100], Time: 1.88, lr: 0.001175, Loss: 0.489605
+2026-02-21 11:56:51,990 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 12:00:38,486 (Valid) Loss: 0.498, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 12:00:38,487 [0.99401587 0.63531718]
+2026-02-21 12:00:38,488 confusion_matrix:
+2026-02-21 12:00:38,488 [[2.27241825e+08 1.23033100e+06]
+ [1.37700000e+05 2.38325900e+06]]
+2026-02-21 12:32:07,590 Epoch: [80/100], Time: 1.88, lr: 0.001122, Loss: 0.481013
+2026-02-21 12:32:08,833 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 12:35:55,540 (Valid) Loss: 0.491, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 12:35:55,540 [0.99614805 0.73025128]
+2026-02-21 12:35:55,542 confusion_matrix:
+2026-02-21 12:35:55,542 [[2.27728625e+08 7.43531000e+05]
+ [1.37061000e+05 2.38389800e+06]]
+2026-02-21 13:07:24,563 Epoch: [81/100], Time: 1.88, lr: 0.001068, Loss: 0.478325
+2026-02-21 13:07:25,822 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 13:11:16,626 (Valid) Loss: 0.496, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 13:11:16,626 [0.99386891 0.63076564]
+2026-02-21 13:11:16,628 confusion_matrix:
+2026-02-21 13:11:16,630 [[2.27197263e+08 1.27489300e+06]
+ [1.26666000e+05 2.39429300e+06]]
+2026-02-21 13:42:44,958 Epoch: [82/100], Time: 1.88, lr: 0.001015, Loss: 0.484855
+2026-02-21 13:42:46,201 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 13:46:31,233 (Valid) Loss: 0.496, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 13:46:31,234 [0.99317221 0.60486063]
+2026-02-21 13:46:31,236 confusion_matrix:
+2026-02-21 13:46:31,236 [[2.27042967e+08 1.42918900e+06]
+ [1.31670000e+05 2.38928900e+06]]
+2026-02-21 14:17:58,099 Epoch: [83/100], Time: 1.87, lr: 0.000961, Loss: 0.484308
+2026-02-21 14:17:59,343 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 14:21:43,598 (Valid) Loss: 0.497, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 14:21:43,598 [0.99415958 0.640701  ]
+2026-02-21 14:21:43,600 confusion_matrix:
+2026-02-21 14:21:43,600 [[2.27277015e+08 1.19514100e+06]
+ [1.40050000e+05 2.38090900e+06]]
+2026-02-21 14:53:13,295 Epoch: [84/100], Time: 1.88, lr: 0.000907, Loss: 0.480052
+2026-02-21 14:53:14,547 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-21 15:14:28,901 (Valid) Loss: 0.491, Best_avg_p-F1_smooth:  0.7068
+2026-02-21 15:14:28,902 [0.99645762 0.74485289]
+2026-02-21 15:14:28,902 confusion_matrix:
+2026-02-21 15:14:28,907 [[2.27818907e+08 6.53249000e+05]
+ [1.56641000e+05 2.36431800e+06]]

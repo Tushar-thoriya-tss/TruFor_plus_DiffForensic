@@ -1,0 +1,120 @@
+2026-02-20 10:55:32,700 CUDNN:
+  BENCHMARK: False
+  DETERMINISTIC: False
+  ENABLED: False
+DATASET:
+  CLASS_WEIGHTS: [0.1, 1.9]
+  NUM_CLASSES: 2
+  ROOT: 
+  TRAIN: ['MyData']
+  VALID: ['MyData']
+GPUS: (0,)
+LOG_DIR: log
+LOSS:
+  LOSSES: [['LOC', 1.0, 'dice_entropy']]
+  SMOOTH: 0
+  USE_OHEM: False
+MODEL:
+  EXTRA:
+    BACKBONE: mit_b2
+    BN_EPS: 0.001
+    BN_MOMENTUM: 0.1
+    DECODER: MLPDecoder
+    DECODER_EMBED_DIM: 512
+    DETECTION: None
+    FIX_MODULES: ['NP++']
+    MODULES: ['NP++', 'backbone', 'loc_head']
+    NP_WEIGHTS: pretrained_models/noiseprint++/noiseprint++.th
+    PREPRC: imagenet
+  MODS: ('RGB', 'NP++')
+  NAME: detconfcmx
+  PRETRAINED: pretrained_models/segformers/mit_b2.pth
+OUTPUT_DIR: weights
+TEST:
+  MODEL_FILE: weights/trufor.pth.tar
+TRAIN:
+  AUG: lib/config/aug_res_comp.yaml
+  BATCH_SIZE_PER_GPU: 4
+  BEGIN_EPOCH: 0
+  END_EPOCH: 100
+  EXTRA_EPOCH: 0
+  IGNORE_LABEL: -1
+  IMAGE_SIZE: [512, 512]
+  LR: 0.005
+  MOMENTUM: 0.9
+  NESTEROV: False
+  NUM_SAMPLES: -1
+  OPTIMIZER: sgd
+  PRETRAINING: None
+  RESUME: True
+  SHUFFLE: True
+  STOP_EPOCH: -1
+  WD: 0.0005
+VALID:
+  AUG: lib/config/aug_res_comp.yaml
+  BEST_KEY: avg_p-F1_smooth
+  FIRST_VALID: False
+  IMAGE_SIZE: None
+  MAX_SIZE: 512
+WORKERS: 24
+2026-02-20 10:55:32,700 
+
+2026-02-20 10:55:32,713 Train augmentation: lib/config/aug_res_comp.yaml Compose([
+  RandomScale(p=0.5, area_for_downscale=None, interpolation=1, mask_interpolation=0, scale_limit=(-0.5, 0.5)),
+  ImageCompression(p=0.5, compression_type='jpeg', quality_range=(99, 100)),
+], p=1.0, bbox_params=None, keypoint_params=None, additional_targets={}, is_check_shapes=True)
+2026-02-20 10:55:32,714 Validation augmentation: lib/config/aug_res_comp.yaml Compose([
+  RandomScale(p=0.5, area_for_downscale=None, interpolation=1, mask_interpolation=0, scale_limit=(-0.5, 0.5)),
+  ImageCompression(p=0.5, compression_type='jpeg', quality_range=(99, 100)),
+], p=1.0, bbox_params=None, keypoint_params=None, additional_targets={}, is_check_shapes=True)
+2026-02-20 10:55:32,725 Using backbone: Segformer-B2
+2026-02-20 10:55:36,566 Using MLP Decoder
+2026-02-20 10:55:36,616 Noiseprint++ weights: pretrained_models/noiseprint++/noiseprint++.th
+2026-02-20 10:55:36,618 Loading backbone model: pretrained_models/segformers/mit_b2.pth
+2026-02-20 10:55:36,791 Load model, Time usage:
+	IO: 0.13996338844299316, initialize parameters: 0.032206058502197266
+2026-02-20 10:55:36,794 Initing heads weights ...
+2026-02-20 10:55:37,139 best valid key: avg_p-F1_smooth
+2026-02-20 10:55:37,803 => loaded checkpoint (epoch 38)
+2026-02-20 11:26:58,216 Epoch: [38/100], Time: 1.87, lr: 0.003205, Loss: 0.491542
+2026-02-20 11:26:59,483 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 11:30:50,641 (Valid) Loss: 0.485, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 11:30:50,641 [0.99600837 0.71906016]
+2026-02-20 11:30:50,641 confusion_matrix:
+2026-02-20 11:30:50,642 [[2.30619728e+08 7.77821000e+05]
+ [1.46416000e+05 2.36556700e+06]]
+2026-02-20 12:02:18,641 Epoch: [39/100], Time: 1.87, lr: 0.003157, Loss: 0.493322
+2026-02-20 12:02:19,912 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 12:06:06,127 (Valid) Loss: 0.491, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 12:06:06,127 [0.98520582 0.41443834]
+2026-02-20 12:06:06,128 confusion_matrix:
+2026-02-20 12:06:06,128 [[2.2806106e+08 3.3364890e+06]
+ [8.8152000e+04 2.4238310e+06]]
+2026-02-20 12:37:35,682 Epoch: [40/100], Time: 1.88, lr: 0.003110, Loss: 0.499515
+2026-02-20 12:37:36,946 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 12:41:21,593 (Valid) Loss: 0.488, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 12:41:21,593 [0.99437182 0.64869564]
+2026-02-20 12:41:21,594 confusion_matrix:
+2026-02-20 12:41:21,594 [[2.30200654e+08 1.19689500e+06]
+ [1.06050000e+05 2.40593300e+06]]
+2026-02-20 13:12:50,599 Epoch: [41/100], Time: 1.88, lr: 0.003062, Loss: 0.508323
+2026-02-20 13:12:51,853 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 13:16:41,582 (Valid) Loss: 0.492, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 13:16:41,582 [0.99376677 0.62450486]
+2026-02-20 13:16:41,583 confusion_matrix:
+2026-02-20 13:16:41,583 [[2.30066465e+08 1.33108400e+06]
+ [1.11969000e+05 2.40001400e+06]]
+2026-02-20 13:48:09,368 Epoch: [42/100], Time: 1.87, lr: 0.003015, Loss: 0.492511
+2026-02-20 13:48:10,618 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 13:52:02,778 (Valid) Loss: 0.521, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 13:52:02,778 [0.9503293  0.17458178]
+2026-02-20 13:52:02,779 confusion_matrix:
+2026-02-20 13:52:02,779 [[2.19980037e+08 1.14175120e+07]
+ [8.01470000e+04 2.43183600e+06]]
+2026-02-20 14:23:31,912 Epoch: [43/100], Time: 1.88, lr: 0.002967, Loss: 0.505137
+2026-02-20 14:23:33,166 => saving checkpoint to weights/mydata_ph2/checkpoint.pth.tar
+2026-02-20 14:27:17,478 (Valid) Loss: 0.490, Best_avg_p-F1_smooth:  0.7068
+2026-02-20 14:27:17,479 [0.99430055 0.63828766]
+2026-02-20 14:27:17,480 confusion_matrix:
+2026-02-20 14:27:17,482 [[2.30260555e+08 1.13699400e+06]
+ [1.82886000e+05 2.32909700e+06]]

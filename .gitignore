@@ -1,0 +1,16 @@
+# Pyre type checker
+.pyre/
+
+*.tar
+*.npz
+*.pt
+*.pth
+*.onnx
+log/
+
+*.png
+*.jpg
+*.jpeg
+*.txt
+
+/input images

@@ -1,0 +1,233 @@
+2026-02-23 10:35:24,863 CUDNN:
+  BENCHMARK: False
+  DETERMINISTIC: False
+  ENABLED: False
+DATASET:
+  CLASS_WEIGHTS: [0.1, 1.9]
+  NUM_CLASSES: 2
+  ROOT: 
+  TRAIN: ['MyData']
+  VALID: ['MyData']
+GPUS: (0,)
+LOG_DIR: log
+LOSS:
+  LOSSES: [['CONF', 1.0, 'mse'], ['DET', 0.5, 'cross_entropy']]
+  SMOOTH: 0
+  USE_OHEM: False
+MODEL:
+  EXTRA:
+    BACKBONE: mit_b2
+    BN_EPS: 0.001
+    BN_MOMENTUM: 0.1
+    DECODER: MLPDecoder
+    DECODER_EMBED_DIM: 512
+    DETECTION: confpool
+    FIX_MODULES: ['NP++', 'backbone', 'loc_head']
+    MODULES: ['NP++', 'backbone', 'loc_head', 'conf_head', 'det_head']
+    NP_WEIGHTS: None
+    PREPRC: imagenet
+  MODS: ('RGB', 'NP++')
+  NAME: detconfcmx
+  PRETRAINED: None
+OUTPUT_DIR: weights
+TEST:
+  MODEL_FILE: ../weights/custom_data_train_eph_10.pth.tar
+TRAIN:
+  AUG: lib/config/aug_res_comp.yaml
+  BATCH_SIZE_PER_GPU: 18
+  BEGIN_EPOCH: 0
+  END_EPOCH: 100
+  EXTRA_EPOCH: 0
+  IGNORE_LABEL: -1
+  IMAGE_SIZE: [512, 512]
+  LR: 0.005
+  MOMENTUM: 0.9
+  NESTEROV: False
+  NUM_SAMPLES: 0
+  OPTIMIZER: sgd
+  PRETRAINING: weights/mydata_ph2/best.pth.tar
+  RESUME: True
+  SHUFFLE: True
+  STOP_EPOCH: -1
+  WD: 0.0005
+VALID:
+  AUG: lib/config/aug_res_comp.yaml
+  BEST_KEY: avg_det_bacc
+  FIRST_VALID: True
+  IMAGE_SIZE: None
+  MAX_SIZE: 512
+WORKERS: 24
+2026-02-23 10:35:24,864 
+
+2026-02-23 10:35:24,879 Train augmentation: lib/config/aug_res_comp.yaml Compose([
+  RandomScale(p=0.5, area_for_downscale=None, interpolation=1, mask_interpolation=0, scale_limit=(-0.5, 0.5)),
+  ImageCompression(p=0.5, compression_type='jpeg', quality_range=(99, 100)),
+], p=1.0, bbox_params=None, keypoint_params=None, additional_targets={}, is_check_shapes=True)
+2026-02-23 10:35:24,879 Validation augmentation: lib/config/aug_res_comp.yaml Compose([
+  RandomScale(p=0.5, area_for_downscale=None, interpolation=1, mask_interpolation=0, scale_limit=(-0.5, 0.5)),
+  ImageCompression(p=0.5, compression_type='jpeg', quality_range=(99, 100)),
+], p=1.0, bbox_params=None, keypoint_params=None, additional_targets={}, is_check_shapes=True)
+2026-02-23 10:35:24,902 Using backbone: Segformer-B2
+2026-02-23 10:35:28,828 Using MLP Decoder
+2026-02-23 10:35:28,865 Initing heads weights ...
+2026-02-23 10:35:29,207 best valid key: avg_det_bacc
+2026-02-23 10:35:29,822 => loaded pretraining (weights/mydata_ph2/best.pth.tar)
+2026-02-23 10:35:29,823 No previous checkpoint.
+2026-02-23 10:39:10,859 best.pth.tar updated.
+2026-02-23 10:39:10,860 (Valid) Loss: 0.983, Best_avg_det_bacc:  0.4992
+2026-02-23 10:39:10,862 [0.99677695 0.75781434]
+2026-02-23 10:39:10,863 confusion_matrix:
+2026-02-23 10:39:10,864 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 10:55:43,486 Epoch: [0/100], Time: 4.43, lr: 0.004955, Loss: 0.478761
+2026-02-23 10:55:44,662 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 10:59:45,316 best.pth.tar updated.
+2026-02-23 10:59:45,317 (Valid) Loss: 0.120, Best_avg_det_bacc:  0.8985
+2026-02-23 10:59:45,317 [0.99677695 0.75781434]
+2026-02-23 10:59:45,317 confusion_matrix:
+2026-02-23 10:59:45,317 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 11:16:17,163 Epoch: [1/100], Time: 4.43, lr: 0.004910, Loss: 0.124459
+2026-02-23 11:16:18,335 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 11:20:16,939 best.pth.tar updated.
+2026-02-23 11:20:16,940 (Valid) Loss: 0.085, Best_avg_det_bacc:  0.9219
+2026-02-23 11:20:16,949 [0.99677695 0.75781434]
+2026-02-23 11:20:16,950 confusion_matrix:
+2026-02-23 11:20:16,951 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 11:36:49,164 Epoch: [2/100], Time: 4.43, lr: 0.004865, Loss: 0.108879
+2026-02-23 11:36:50,362 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 11:40:24,479 (Valid) Loss: 0.094, Best_avg_det_bacc:  0.9219
+2026-02-23 11:40:24,480 [0.99677695 0.75781434]
+2026-02-23 11:40:24,481 confusion_matrix:
+2026-02-23 11:40:24,481 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 11:56:53,361 Epoch: [3/100], Time: 4.41, lr: 0.004820, Loss: 0.107219
+2026-02-23 11:56:54,537 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 12:00:48,976 best.pth.tar updated.
+2026-02-23 12:00:48,977 (Valid) Loss: 0.068, Best_avg_det_bacc:  0.9445
+2026-02-23 12:00:48,977 [0.99677695 0.75781434]
+2026-02-23 12:00:48,978 confusion_matrix:
+2026-02-23 12:00:48,979 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 12:17:20,960 Epoch: [4/100], Time: 4.43, lr: 0.004774, Loss: 0.107964
+2026-02-23 12:17:22,135 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 12:21:04,461 (Valid) Loss: 0.089, Best_avg_det_bacc:  0.9445
+2026-02-23 12:21:04,462 [0.99677695 0.75781434]
+2026-02-23 12:21:04,462 confusion_matrix:
+2026-02-23 12:21:04,472 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 12:37:37,700 Epoch: [5/100], Time: 4.43, lr: 0.004729, Loss: 0.091401
+2026-02-23 12:37:38,873 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 12:41:13,605 (Valid) Loss: 0.084, Best_avg_det_bacc:  0.9445
+2026-02-23 12:41:13,606 [0.99677695 0.75781434]
+2026-02-23 12:41:13,607 confusion_matrix:
+2026-02-23 12:41:13,607 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 12:57:46,602 Epoch: [6/100], Time: 4.43, lr: 0.004684, Loss: 0.105067
+2026-02-23 12:57:47,768 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 13:01:24,074 (Valid) Loss: 0.078, Best_avg_det_bacc:  0.9445
+2026-02-23 13:01:24,075 [0.99677695 0.75781434]
+2026-02-23 13:01:24,075 confusion_matrix:
+2026-02-23 13:01:24,077 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 13:18:00,265 Epoch: [7/100], Time: 4.45, lr: 0.004639, Loss: 0.096074
+2026-02-23 13:18:01,452 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 13:21:40,982 (Valid) Loss: 0.081, Best_avg_det_bacc:  0.9445
+2026-02-23 13:21:40,983 [0.99677695 0.75781434]
+2026-02-23 13:21:40,983 confusion_matrix:
+2026-02-23 13:21:40,984 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 13:38:13,239 Epoch: [8/100], Time: 4.43, lr: 0.004593, Loss: 0.092692
+2026-02-23 13:38:14,423 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 13:41:51,390 (Valid) Loss: 0.101, Best_avg_det_bacc:  0.9445
+2026-02-23 13:41:51,391 [0.99677695 0.75781434]
+2026-02-23 13:41:51,392 confusion_matrix:
+2026-02-23 13:41:51,392 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 13:58:25,695 Epoch: [9/100], Time: 4.44, lr: 0.004548, Loss: 0.098199
+2026-02-23 13:58:26,876 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 14:02:12,132 (Valid) Loss: 0.076, Best_avg_det_bacc:  0.9445
+2026-02-23 14:02:12,133 [0.99677695 0.75781434]
+2026-02-23 14:02:12,133 confusion_matrix:
+2026-02-23 14:02:12,135 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 14:18:45,912 Epoch: [10/100], Time: 4.44, lr: 0.004502, Loss: 0.097777
+2026-02-23 14:18:47,091 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 14:22:23,438 (Valid) Loss: 0.065, Best_avg_det_bacc:  0.9445
+2026-02-23 14:22:23,439 [0.99677695 0.75781434]
+2026-02-23 14:22:23,439 confusion_matrix:
+2026-02-23 14:22:23,439 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 14:38:57,129 Epoch: [11/100], Time: 4.44, lr: 0.004457, Loss: 0.092385
+2026-02-23 14:38:58,308 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 14:42:38,248 (Valid) Loss: 0.068, Best_avg_det_bacc:  0.9445
+2026-02-23 14:42:38,249 [0.99677695 0.75781434]
+2026-02-23 14:42:38,250 confusion_matrix:
+2026-02-23 14:42:38,251 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 14:59:10,978 Epoch: [12/100], Time: 4.43, lr: 0.004411, Loss: 0.087322
+2026-02-23 14:59:12,154 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 15:02:50,960 (Valid) Loss: 0.068, Best_avg_det_bacc:  0.9445
+2026-02-23 15:02:50,961 [0.99677695 0.75781434]
+2026-02-23 15:02:50,961 confusion_matrix:
+2026-02-23 15:02:50,961 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 15:19:23,328 Epoch: [13/100], Time: 4.43, lr: 0.004365, Loss: 0.081962
+2026-02-23 15:19:24,507 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 15:23:21,163 best.pth.tar updated.
+2026-02-23 15:23:21,168 (Valid) Loss: 0.064, Best_avg_det_bacc:  0.9527
+2026-02-23 15:23:21,171 [0.99677695 0.75781434]
+2026-02-23 15:23:21,172 confusion_matrix:
+2026-02-23 15:23:21,178 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 15:39:53,315 Epoch: [14/100], Time: 4.43, lr: 0.004320, Loss: 0.093362
+2026-02-23 15:39:54,496 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 15:43:34,519 (Valid) Loss: 0.072, Best_avg_det_bacc:  0.9527
+2026-02-23 15:43:34,520 [0.99677695 0.75781434]
+2026-02-23 15:43:34,520 confusion_matrix:
+2026-02-23 15:43:34,522 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 16:00:06,855 Epoch: [15/100], Time: 4.43, lr: 0.004274, Loss: 0.088966
+2026-02-23 16:00:08,054 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 16:03:46,923 (Valid) Loss: 0.068, Best_avg_det_bacc:  0.9527
+2026-02-23 16:03:46,924 [0.99677695 0.75781434]
+2026-02-23 16:03:46,924 confusion_matrix:
+2026-02-23 16:03:46,925 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 16:20:19,040 Epoch: [16/100], Time: 4.43, lr: 0.004228, Loss: 0.096422
+2026-02-23 16:20:20,206 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 16:23:55,593 (Valid) Loss: 0.062, Best_avg_det_bacc:  0.9527
+2026-02-23 16:23:55,594 [0.99677695 0.75781434]
+2026-02-23 16:23:55,594 confusion_matrix:
+2026-02-23 16:23:55,595 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 16:40:27,508 Epoch: [17/100], Time: 4.43, lr: 0.004182, Loss: 0.087700
+2026-02-23 16:40:28,686 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 16:44:36,682 best.pth.tar updated.
+2026-02-23 16:44:36,683 (Valid) Loss: 0.065, Best_avg_det_bacc:  0.9529
+2026-02-23 16:44:36,684 [0.99677695 0.75781434]
+2026-02-23 16:44:36,686 confusion_matrix:
+2026-02-23 16:44:36,686 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 17:01:07,623 Epoch: [18/100], Time: 4.42, lr: 0.004136, Loss: 0.089480
+2026-02-23 17:01:08,804 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 17:04:51,347 (Valid) Loss: 0.070, Best_avg_det_bacc:  0.9529
+2026-02-23 17:04:51,348 [0.99677695 0.75781434]
+2026-02-23 17:04:51,348 confusion_matrix:
+2026-02-23 17:04:51,350 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 17:21:24,489 Epoch: [19/100], Time: 4.43, lr: 0.004090, Loss: 0.085173
+2026-02-23 17:21:25,665 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 17:25:06,166 (Valid) Loss: 0.064, Best_avg_det_bacc:  0.9529
+2026-02-23 17:25:06,166 [0.99677695 0.75781434]
+2026-02-23 17:25:06,167 confusion_matrix:
+2026-02-23 17:25:06,168 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
+2026-02-23 17:41:38,023 Epoch: [20/100], Time: 4.43, lr: 0.004044, Loss: 0.080102
+2026-02-23 17:41:39,197 => saving checkpoint to weights/trufor_ph3/checkpoint.pth.tar
+2026-02-23 17:45:22,431 (Valid) Loss: 0.069, Best_avg_det_bacc:  0.9529
+2026-02-23 17:45:22,431 [0.99677695 0.75781434]
+2026-02-23 17:45:22,432 confusion_matrix:
+2026-02-23 17:45:22,432 [[2.25338072e+08 5.21417000e+05]
+ [2.07208000e+05 2.27991400e+06]]
